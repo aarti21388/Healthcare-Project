@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Add Note {% endblock %}
+{% block content %}
+<style>
+      
+
+      form {
+        background-color: #fff;
+        border: 2px solid #ddd;
+        padding: 20px;
+        width: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        color: #666;
+      }
+
+      textarea {
+        width: 100%;
+        height: 100px;
+        padding: 5px;
+        margin-bottom: 10px;
+      }
+
+      button[type="submit"] {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #45a049;
+      }
+    </style>
+    {% if message %}
+    <b>{{message}}</b>
+    {% endif %}
+<div class='container'>
+<form method="post">
+  {% csrf_token %}
+<h1>Add Note</h1>
+<label for="content">Note Content:</label>
+<textarea id="content" name="content" required></textarea>
+<br />
+<button type="submit">Save</button>
+
+</form>
+</div>
+{% endblock %}
+ 

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} View Notes {% endblock %}
+{% block content %}
+
+<style>
+      .container {
+        margin: 0 auto;
+        width: 50%;
+        border: 1px solid #ddd;
+        padding: 20px;
+      }
+
+      .message {
+        margin-bottom: 20px;
+        color: #ff0000;
+      }
+
+      .notes-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .notes-list li {
+        margin-bottom: 10px;
+      }
+    </style>
+
+<div class="container">
+<h1>Notes</h1>
+{% if notes %}
+<ul>
+    {% for note in notes %}
+    <li >{{note.content}}</li>
+    
+    {% endfor %}
+{% else %}
+<p>No notes available for this patient.</p>
+{% endif %}
+</ul>
+ <a href='{% url 'patient:addNote' patient_id %}' class="btn btn-primary">Add Note</a>
+ <a href='{% url 'patient:patient_details' patient_id %}' class="btn btn-primary">Back</a>
+{% comment %} <a href='{% url 'patient:noteDetail' patient.id %}' id="listnotesBtn" class="btn btn-primary" >List Notes</a> {% endcomment %} 
+</div>
+{% endblock %}

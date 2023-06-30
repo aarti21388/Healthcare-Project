@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Patient Registration{% endblock %}
+
+{% block content %}
+{% comment %} {% for item in page_obj %}
+{{item}}
+{% endfor %} {% endcomment %}
+
+
+    <div class="container">
+        <h1>Search Patient</h1>
+        <form id="search-form" method="GET" class="mb-4">
+            <div class="row">
+                <div class="col-md-8">
+                    <input type="text" name="name" class="form-control" placeholder="Search by name, email, address, etc." value="" required>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+        
+            <h2> Search results </h2>
+            <table class='table'>
+            <thead>
+                <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Date of Birth</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Medical History</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% if patient %}
+                    {% for p in patient %}
+                    <tr>
+                    <td><a href="{% url 'patient:patient_details' p.id %}">{{p.id}}</a></td>
+                    <td>{{p.name}}</td>
+                    <td>{{p.contact_details}}</td>
+                    <td>{{p.dob}}</td>
+                    <td>{{p.address}}</td>
+                    <td>{{p.email}}</td>
+                    <td>{{p.medical_history}}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    {% if search_name %}
+                        <h2> No result found for "{{ search_name }}" </h2>
+                    {% else %}
+                    <td> No result found </td>
+                    {% endif %}
+                 {% endif %}
+            </tbody>
+            </table>
+        
+            <a href='#' id="scheduleappointmentsBtn" class="btn btn-primary">Schedule Appointment</a>
+        <br><br>
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+    
+    <span class="current-page">{{ page_obj.number }}</span>
+    
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+    {% endif %}
+    
+    
+    
+    
+    
+    
+    
+{% endblock %}

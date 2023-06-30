@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Patient Details{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Patient Details</h1>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Patient ID</th>
+                    <td>{{patient.id}}</td>
+
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{patient.name}}</td>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td>{{patient.address}}</td>
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td>{{patient.gender}}</td>
+                </tr>
+                <tr>
+                    <th>Medical History</th>
+                    <td>{{patient.medical_history}}</td>
+                </tr>
+                <tr>
+                    <th>Contact Details</th>
+                    <td>{{patient.contact_details}}</td>
+                </tr>
+                <tr>
+                    <th>Date of Birth</th>
+                    <td>{{patient.dob}}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{patient.email}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <a href='{% url 'patient:edit' patient.id %}' id="updateBtn" class="btn btn-primary" >Edit</a>
+        <a href='{% url 'appointment:schedule' patient.id %}' id="scheduleappointmentsBtn" class="btn btn-primary">Schedule Appointment</a>
+        <a href='{% url 'patient:appointments' patient.id %}' id="listappointmentsBtn" class="btn btn-primary" >Display Appointments</a>
+        <a href='{% url 'patient:noteDetail' patient.id %}' id="listnotesBtn" class="btn btn-primary" >List Notes</a>
+        <a href='{% url 'patient:search_patient' %}' id="search" class="btn btn-primary" >Back</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Patient Details{% endblock %}
+
+{% block content %}
+    <div class="container" class="myform">
+        <h1>List Appointments</h1>
+
+        <!-- Table for listing appointments -->
+        <table id="appointmentTable" class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Age</th>
+                    <th>Appointment Date</th>
+                    <th>Doctor Name</th>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Purpose</th>
+                     <th>Time Slot</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if appointment %}
+                {% for a in appointment %}
+                <tr>
+                    <td>{{a.id}} </td>
+                    <td>{{a.age}}</td>
+                    <td>{{a.appointment_date}}</td>
+                    <td>{{a.doctor_name}}</td>
+                    <td>{{a.email}}</td>
+                    <td>{{a.name}}</td>
+                    <td>{{a.purpose}}</td>
+                    <td>{{a.patient_id}}</td>
+                    <td>{{a.time_slot}}</td>
+                    <td><button type="submit"> <a href="{% url 'patient:reschedule_appointment' a.id %}">reschedule</a>
+                </tr>
+                {% endfor %}
+                {% else %}
+                    <td> <p> You don't have any upcoming appointment schedule </p> </td>
+                {% endif %}
+            </tbody>
+        </table>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{% endblock %}

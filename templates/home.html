@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}EHR System{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mt-4">Welcome to the EHR System</h1>
+        <div class="row mt-4">
+            <div class="col-md-4 mb-4">
+                <a href='registration/' class="btn btn-primary btn-block">
+                    <i class="fas fa-user-plus"></i>
+                    Patient Registration
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a  href='patient/' class="btn btn-primary btn-block">
+                    <i class="fas fa-search"></i>
+                    Show Patients
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

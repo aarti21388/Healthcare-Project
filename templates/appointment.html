@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Patient Details{% endblock %}
+
+{% block content %}
+<style>
+    .alert {
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .alert-error {
+        background-color: red;
+        color: black;
+    }
+</style>
+    <div class="container">
+        <h1>Appointment Form</h1>
+
+        <form method="POST" class="myform">
+            {% csrf_token %}
+            <table class='table'>
+                <div class="form-group">
+                    {{ form.as_table}}
+                </div>
+            </table>
+    
+     <button type="submit" class="btn btn-primary" align="center">Schedule Appointment</button>
+        </form>
+        {% if messges %}
+        <div class='alert alert-error'>
+            {% for i in messges %}
+            {{i}}<br/>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+
+{% endblock %}

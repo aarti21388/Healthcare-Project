@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Appointment{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Appointment Form</h1>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form method="POST" >
+            
+            {% csrf_token %}
+            {% comment %} <div class="form-group">
+                <table class='table'>
+    {{ form }}
+                </table>
+            </div> {% endcomment %}
+            <div class="form-group">
+                
+                <label for="id_age">Age</label>
+                <input type="number" name="age" required="" id="id_age" value="{{form.age}}">
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="id_appointment_date">Appointment date</label>
+                <input type="date" name="appointment_date" required="" id="id_appointment_date" value="{{form.appointment_date|date:'Y-m-d'}}">
+            </div>
+
+
+
+
+            <div class="form-group">
+                <label for="id_doctor_name">Doctor name</label>
+                <input type="text" name="doctor_name" maxlength="255" required="" id="id_doctor_name" value="{{form.doctor_name}}" >
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="id_email">Email</label>
+                <input type="text" name="email" maxlength="255" required="" id="id_email" value="{{form.email}}" >
+            <div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div></div>
+
+
+
+            <div class="form-group">
+                <label for="id_name">Name</label>
+                <input type="text" name="name" maxlength="255" required="" id="id_name" value="{{form.name}}">
+                
+            </div>
+        
+            <input type="number" name="patient_id" required="" value="{{form.patient_id.id}}" hidden>
+
+
+            <div class="form-group">
+                <label for="id_purpose">Purpose</label>
+                <input type="text" name="purpose" maxlength="255" required="" id="id_purpose" value="{{form.purpose}}" >
+            </div>
+
+            <div class="form-group">
+                <label for="id_time_slot">Time Slot</label>
+                <select name="time_slot" required="" id="id_time_slot" maxlength="30">
+                    {% for option_value, option_label in timeslot %}
+                        <option value="{{ option_value }}" {% if option_value == form.time_slot %}selected{% endif %}>{{ option_label }}</option>
+                    {% endfor %}
+                </select>
+                   
+            </div> 
+
+            <button type="submit" class="btn btn-primary">Re-Schedule</button>
+        </form>
+        </div>
+
+
+
+
+    
+{% endblock %}

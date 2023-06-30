@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Patient Registration{% endblock %}
+
+{% block content %}
+<style>
+    .alert {
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .alert-error {
+        background-color: red;
+        color: black;
+    }
+</style>
+    <div class="container">
+        <h1 class="mt-4">Patient Registration</h1>
+        <form method="post" class="myform">
+        {% csrf_token %}
+            <div class="form-group">
+                <table width="500px" height="600px" border="2" class="w3-green "  >
+                    {{form}}
+                    
+                    </table>
+                    <br>
+                    <br> 
+               
+               {% if error_message %}
+                    <div class='alter alter-error' color="red">{{error_message}}</div>
+               {% endif %}
+                
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" align='center'>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
