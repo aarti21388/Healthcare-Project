@@ -1,7 +1,6 @@
 
 # Healthcare-Project
 
-```shell
 This project focuses on developing a logic set for a simulated Electronic Health Records (EHR) and Practice Management system. Utilizing Python, Java, and Node.js, the main goal is to enable users to register new patients and schedule appointments through specific endpoints. To ensure a seamless operation of the EHR system, this project will require you to implement essential business logic and efficient database queries. By engaging in this project, you'll have the opportunity to enhance your skills in healthcare system development and gain valuable hands-on experience in handling EHR functionalities.
 
 ## Installation
